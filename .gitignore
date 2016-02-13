@@ -1,0 +1,11 @@
+# 폴더 무시하기
+[Dd]ebug/
+[Rr]elease/
+ipch/
+
+# 파일(들) 무시하기
+*.aps
+*.sdf
+*.suo
+*.user
+*.old
