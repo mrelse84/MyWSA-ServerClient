@@ -8,6 +8,7 @@
 //#include "MyWSA-ServerClientDlg.h"
 
 #include <winsock2.h>	// winsock 2
+//#include <afxsock.h>	// winsock 1(?)
 
 // CMyWSAWnd
 
@@ -19,6 +20,11 @@ CMyWSAWnd::CMyWSAWnd()
 	// winsock 초기화
 	WSADATA data;
 	WSAStartup(0x0202, &data);
+
+	//if (!AfxSocketInit())			//소켓초기화
+	//{ 
+	//	AfxMessageBox("AfxSocketInit Fail");
+	//}
 	
 	// WSAAsyncEvent(winsock의 비동기 Event)와 연결할 Hidden Window 객체 생성
 	CString wcn = ::AfxRegisterWndClass(NULL);
@@ -274,9 +280,9 @@ LRESULT  CMyWSAWnd::OnSockMsg(WPARAM wParam, LPARAM lParam)
 				m_chRecv[m_nRecvPos+nRecvSize] = '\0';
 				strTempMsg.Format("%s", &m_chRecv[m_nRecvPos]);
 
-				nRecvSize = nRecvSize + 1;
+				nRecvSize = nRecvSize + 1; // '\0' 추가에 따라 1 증가시킴
 				m_nRecvPos += nRecvSize;
-				m_nRecvSize[m_nRecvInx] = nRecvSize;
+				m_nRecvSize[m_nRecvInx] = nRecvSize; // Recv 회수마다 RecvSize 저장
 				m_nRecvInx++;
 
 				if (m_nRecvInx >= MAX_MSG_COUNT)

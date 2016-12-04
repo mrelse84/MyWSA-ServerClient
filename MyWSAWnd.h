@@ -41,7 +41,7 @@ private:
 	int m_nClientPort[MAX_CLIENT_COUNT];
 	int m_nClientInx;
 	int m_nRecvSize[MAX_MSG_COUNT]; // 각 MSG의 Size를 저장
-	int m_nRecvPos; // m_chRecv 버퍼의서 recv할 현재 위치
+	int m_nRecvPos; // m_chRecv 버퍼에서 recv할 현재 위치
 	int m_nRecvInx; // MSG의 현재 개수
 	afx_msg void OnTimer(UINT_PTR nIDEvent);
 	afx_msg LRESULT OnSockMsg(WPARAM wParam, LPARAM lParam);
